@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Knowledge Base{% endblock %}</title>
+  {% if project_description %}
+  <meta name="description" content="{{ project_description }}">
+  <meta property="og:description" content="{{ project_description }}">
+  <meta property="twitter:description" content="{{ project_description }}">
+  {% endif %}
+  {% if project_image_url %}
+  <meta property="og:image" content="{{ project_image_url }}">
+  <meta property="twitter:image" content="{{ project_image_url }}">
+  {% endif %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}?v={{ deployment_timestamp }}">
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+  {% block content %}{% endblock %}
+</body>
+
+</html>

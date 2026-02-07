@@ -1,0 +1,21 @@
+
+:root {
+    --bg-color-start: #6a11cb;
+    --bg-color-end: #2575fc;
+    --text-color: #ffffff;
+    --card-bg-color: rgba(255, 255, 255, 0.01);
+    --card-border-color: rgba(255, 255, 255, 0.1);
+}
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(45deg, var(--bg-color-start), var(--bg-color-end));
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
