@@ -1,7 +1,8 @@
 from django.urls import path
-
-from .views import home
+from . import views
 
 urlpatterns = [
-    path("", home, name="home"),
+    path("", views.home, name="home"),
+    path("integrations/", views.integrations, name="integrations"),
+    path("security/wipe/", views.wipe_data, name="wipe_data"),
 ]

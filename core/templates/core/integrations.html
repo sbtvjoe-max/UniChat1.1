@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2 class="section-title">Channel Integrations</h2>
+            <p class="text-muted">Connect and manage your messaging services.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for channel in channels %}
+        <div class="col-md-4">
+            <div class="glass-card channel-card {% if channel.is_active %}active{% endif %}">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="platform-logo me-3 {{ channel.name }}">
+                            <!-- Placeholder for logo -->
+                        </div>
+                        <div>
+                            <h5 class="mb-0">{{ channel.get_name_display }}</h5>
+                            <span class="badge {% if channel.is_active %}bg-success{% else %}bg-secondary{% endif %}">
+                                {% if channel.is_active %}Active{% else %}Disabled{% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-muted small">Connect your {{ channel.get_name_display }} account to start receiving messages in UniChat.</p>
+                    
+                    <form action="{% url 'integrations' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="channel_id" value="{{ channel.id }}">
+                        {% if channel.is_active %}
+                            <button type="submit" name="action" value="disable" class="btn btn-outline-danger w-100">Disconnect</button>
+                        {% else %}
+                            <button type="submit" name="action" value="enable" class="btn btn-primary w-100">Connect Channel</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
